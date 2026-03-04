@@ -1,7 +1,7 @@
 {
   "name": "nodewave",
   "displayName": "nodewave",
-  "description": "HeatWave for Node.js — seamless build, deploy, and upgrade for Next.js and Node.js projects in VS Code, Cursor, Codespaces, and any VS Code-compatible IDE.",
+  "description": "Seamless build, deploy, and upgrade for Next.js and Node.js projects — works in VS Code, Cursor, GitHub Codespaces, and any VS Code-compatible IDE.",
   "version": "0.1.0",
   "publisher": "nodewave",
   "private": true,

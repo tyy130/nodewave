@@ -1,7 +1,7 @@
 {
   "name": "nodewave",
   "private": true,
-  "description": "HeatWave mirror for Node.js — seamless build, deploy, and upgrade for VS Code, Cursor, Codespaces, and any VS Code-compatible IDE.",
+  "description": "Seamless build, deploy, and upgrade for Next.js + Node.js — VS Code extension, CLI, and smart deployment config generation.",
   "version": "0.1.0",
   "workspaces": [
     "packages/*"

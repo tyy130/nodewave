@@ -5,7 +5,7 @@
 //  ██║╚██╗██║██║   ██║██║  ██║██╔══╝  ██║███╗██║██╔══██║╚██╗ ██╔╝██╔══╝
 //  ██║ ╚████║╚██████╔╝██████╔╝███████╗╚███╔███╔╝██║  ██║ ╚████╔╝ ███████╗
 //  ╚═╝  ╚═══╝ ╚═════╝ ╚═════╝ ╚══════╝ ╚══╝╚══╝ ╚═╝  ╚═╝  ╚═══╝  ╚══════╝
-//  nodewave CLI — HeatWave for Node.js
+//  nodewave CLI — seamless build, deploy, and upgrade for Next.js + Node.js
 //  Seamless build, deploy, and upgrade for Next.js + Node.js projects
 // =============================================================================
 
@@ -32,7 +32,7 @@ const program = new Command();
 program
   .name('nodewave')
   .description(
-    chalk.cyan('🌊 nodewave') + ' — HeatWave for Node.js\n' +
+    chalk.cyan('🌊 nodewave') + ' — Seamless build, deploy, and upgrade for Next.js + Node.js\n' +
     'Seamless build, deploy, and upgrade for Next.js + Node.js projects\n' +
     'Compatible with VS Code, Cursor, Codespaces, and any VS Code-compatible IDE'
   )

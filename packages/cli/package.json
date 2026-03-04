@@ -1,17 +1,24 @@
 {
-  "name": "@nodewave/cli",
+  "name": "nodewave-cli",
   "version": "0.1.0",
-  "description": "nodewave CLI — seamless Node.js build, deploy, and upgrade tool",
+  "description": "Seamless build, deploy, and upgrade for Next.js and Node.js projects",
+  "keywords": ["nextjs", "next.js", "vercel", "netlify", "railway", "deploy", "cli", "node", "upgrade", "doctor"],
+  "homepage": "https://github.com/nodewave/nodewave",
+  "repository": { "type": "git", "url": "https://github.com/nodewave/nodewave.git" },
+  "license": "MIT",
+  "author": "nodewave",
   "main": "./dist/cli.mjs",
   "bin": {
     "nodewave": "./dist/cli.mjs"
   },
+  "files": ["dist"],
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
     "clean": "rm -rf dist",
-    "start": "node dist/cli.js"
+    "prepublishOnly": "pnpm build"
   },
+  "engines": { "node": ">=18.0.0" },
   "dependencies": {
     "@inquirer/prompts": "^5.3.8",
     "@nodewave/core": "workspace:*",
@@ -20,7 +27,8 @@
     "execa": "^9.3.0",
     "ora": "^8.1.0",
     "zod": "^3.23.8"
-  },  "devDependencies": {
+  },
+  "devDependencies": {
     "@types/node": "^22.0.0",
     "tsup": "^8.2.4",
     "typescript": "^5.4.5"

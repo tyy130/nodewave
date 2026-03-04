@@ -15,8 +15,10 @@
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
-    "clean": "rm -rf dist"
+    "clean": "rm -rf dist",
+    "prepublishOnly": "pnpm build"
   },
+  "files": ["dist", "src/templates"],
   "dependencies": {
     "chalk": "^5.3.0",
     "execa": "^9.3.0",
