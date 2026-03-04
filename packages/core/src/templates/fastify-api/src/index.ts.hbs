@@ -1,0 +1,10 @@
+import Fastify from 'fastify';
+
+const fastify = Fastify({ logger: true });
+const port = Number(process.env.PORT ?? 3000);
+
+fastify.get('/', async () => {
+  return { message: '{{projectName}} is running 🌊' };
+});
+
+await fastify.listen({ port, host: '0.0.0.0' });

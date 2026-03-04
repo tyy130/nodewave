@@ -1,0 +1,28 @@
+{
+  "name": "@nodewave/cli",
+  "version": "0.1.0",
+  "description": "nodewave CLI — seamless Node.js build, deploy, and upgrade tool",
+  "main": "./dist/cli.mjs",
+  "bin": {
+    "nodewave": "./dist/cli.mjs"
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "clean": "rm -rf dist",
+    "start": "node dist/cli.js"
+  },
+  "dependencies": {
+    "@inquirer/prompts": "^5.3.8",
+    "@nodewave/core": "workspace:*",
+    "chalk": "^5.3.0",
+    "commander": "^12.1.0",
+    "execa": "^9.3.0",
+    "ora": "^8.1.0",
+    "zod": "^3.23.8"
+  },  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsup": "^8.2.4",
+    "typescript": "^5.4.5"
+  }
+}

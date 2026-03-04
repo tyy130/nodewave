@@ -1,0 +1,122 @@
+{
+  "name": "nodewave",
+  "displayName": "nodewave",
+  "description": "HeatWave for Node.js — seamless build, deploy, and upgrade for Next.js and Node.js projects in VS Code, Cursor, Codespaces, and any VS Code-compatible IDE.",
+  "version": "0.1.0",
+  "publisher": "nodewave",
+  "private": true,
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nodewave/nodewave"
+  },
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Other",
+    "Debuggers",
+    "SCM Providers"
+  ],
+  "keywords": [
+    "nextjs",
+    "vercel",
+    "netlify",
+    "railway",
+    "deploy",
+    "node",
+    "express"
+  ],
+  "icon": "media/icon.png",
+  "activationEvents": [
+    "workspaceContains:**/package.json",
+    "workspaceContains:**/nodewave.config.js"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "nodewave",
+          "title": "nodewave",
+          "icon": "media/nodewave-icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "nodewave": [
+        {
+          "id": "nodewave.explorer",
+          "name": "Explorer",
+          "icon": "media/nodewave-icon.svg"
+        }
+      ]
+    },
+    "commands": [
+      { "command": "nodewave.newProject",    "title": "nodewave: New Project",       "icon": "$(add)" },
+      { "command": "nodewave.build",          "title": "nodewave: Build",              "icon": "$(play)" },
+      { "command": "nodewave.dev",            "title": "nodewave: Start Dev Server",   "icon": "$(debug-start)" },
+      { "command": "nodewave.deploy",         "title": "nodewave: Deploy",             "icon": "$(rocket)" },
+      { "command": "nodewave.harvest",        "title": "nodewave: Harvest Config",     "icon": "$(search)" },
+      { "command": "nodewave.upgrade",        "title": "nodewave: Upgrade Project",    "icon": "$(arrow-up)" },
+      { "command": "nodewave.addPackage",     "title": "nodewave: Add Package",        "icon": "$(package)" },
+      { "command": "nodewave.openSettings",   "title": "nodewave: Open Settings",      "icon": "$(settings-gear)" },
+      { "command": "nodewave.showStatus",     "title": "nodewave: Show Status",        "icon": "$(pulse)" }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "nodewave.newProject",
+          "when": "view == nodewave.explorer",
+          "group": "navigation"
+        },
+        {
+          "command": "nodewave.deploy",
+          "when": "view == nodewave.explorer",
+          "group": "navigation"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "nodewave",
+      "properties": {
+        "nodewave.defaultTarget": {
+          "type": "string",
+          "enum": ["vercel", "netlify", "railway"],
+          "default": "vercel",
+          "description": "Default deployment target"
+        },
+        "nodewave.autoHarvest": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically harvest project config on workspace open"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "build": "webpack --mode production",
+    "dev": "webpack --mode development --watch",
+    "clean": "rm -rf dist",
+    "package": "vsce package",
+    "vscode:prepublish": "pnpm build"
+  },
+  "dependencies": {
+    "@nodewave/core": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@types/vscode": "^1.80.0",
+    "@vscode/vsce": "^3.0.0",
+    "css-loader": "^7.1.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "style-loader": "^4.0.0",
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.4.5",
+    "webpack": "^5.94.0",
+    "webpack-cli": "^5.1.4"
+  }
+}

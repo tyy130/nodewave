@@ -1,0 +1,22 @@
+{
+  "name": "nodewave",
+  "private": true,
+  "description": "HeatWave mirror for Node.js — seamless build, deploy, and upgrade for VS Code, Cursor, Codespaces, and any VS Code-compatible IDE.",
+  "version": "0.1.0",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "pnpm -r build",
+    "dev": "pnpm -r --parallel dev",
+    "lint": "pnpm -r lint",
+    "clean": "pnpm -r clean"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5"
+  },
+  "engines": {
+    "node": ">=22.0.0",
+    "pnpm": ">=9.0.0"
+  }
+}
