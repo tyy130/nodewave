@@ -62,10 +62,13 @@ export async function deployCommand(opts: DeployOptions) {
   deploySpinner.stop();
 
   const deployCmd = getDeployCLI(target);
-  console.log(chalk.dim(`\nRunning: ${deployCmd}\n`));
+  const [bin, ...args] = deployCmd.split(' ');
+  const separator = chalk.dim('─'.repeat(50));
+  console.log(`\n${separator}`);
+  console.log(chalk.dim(`  from ${bin}:`));
+  console.log(`${separator}\n`);
 
   try {
-    const [bin, ...args] = deployCmd.split(' ');
     await execa(bin, args, { cwd, stdio: 'inherit' });
     console.log(chalk.green(`\n✓ Deployed to ${target}!`));
   } catch {

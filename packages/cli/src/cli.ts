@@ -9,6 +9,10 @@
 //  Seamless build, deploy, and upgrade for Next.js + Node.js projects
 // =============================================================================
 
+// Suppress Node's MODULE_TYPELESS_PACKAGE_JSON warning when loading user configs
+process.removeAllListeners('warning');
+process.on('warning', (w) => { if (w.code !== 'MODULE_TYPELESS_PACKAGE_JSON') console.warn(w); });
+
 import { Command } from 'commander';
 import chalk from 'chalk';
 import { initCommand } from './commands/init.js';
@@ -19,6 +23,8 @@ import { upgradeCommand } from './commands/upgrade.js';
 import { harvestCommand } from './commands/harvest.js';
 import { addCommand } from './commands/add.js';
 import { configCommand } from './commands/config.js';
+import { envCommand } from './commands/env.js';
+import { doctorCommand } from './commands/doctor.js';
 import { statusCommand } from './commands/status.js';
 
 const program = new Command();
@@ -89,5 +95,18 @@ program
   .description('Show project health and deployment status')
   .option('--cwd <path>', 'Working directory', process.cwd())
   .action(statusCommand);
+
+program
+  .command('env [subcommand]')
+  .description('Manage environment variables (list, sync, pull)')
+  .option('--cwd <path>', 'Working directory', process.cwd())
+  .option('--target <target>', 'Platform target (vercel, netlify, railway)', 'vercel')
+  .action(envCommand);
+
+program
+  .command('doctor')
+  .description('Scan project for misconfigurations before they break production')
+  .option('--cwd <path>', 'Working directory', process.cwd())
+  .action(doctorCommand);
 
 program.parse();

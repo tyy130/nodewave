@@ -18,10 +18,28 @@ export async function devCommand(opts: DevOptions) {
   const devCmd = getDevCommand(typeResult.type);
   const [bin, ...args] = devCmd.split(' ');
 
-  console.log(chalk.dim(`Starting dev server (${devCmd})...\n`));
+  console.log(chalk.dim(`Starting dev server (${devCmd})...`));
 
-  // Pass through stdio so the dev server output is visible
-  await execa(bin, args, { cwd, stdio: 'inherit' }).catch(() => {});
+  const separator = chalk.dim('─'.repeat(50));
+  const handoff = (label: string) => {
+    console.log(`\n${separator}`);
+    console.log(chalk.dim(`  from ${label}:`));
+    console.log(`${separator}\n`);
+  };
+
+  try {
+    handoff(bin);
+    await execa(bin, args, { cwd, stdio: 'inherit' });
+  } catch (err: any) {
+    if (err.code === 'ENOENT' || err.exitCode === 127) {
+      console.log(chalk.yellow(`  ⚠ '${bin}' not found in PATH — falling back to npm run dev`));
+      handoff('npm run dev');
+      await execa('npm', ['run', 'dev'], { cwd, stdio: 'inherit' });
+    } else if (err.exitCode !== undefined && err.exitCode !== 0) {
+      console.error(chalk.red(`\n  ✗ Dev server exited with code ${err.exitCode}`));
+      process.exit(err.exitCode);
+    }
+  }
 }
 
 function getDevCommand(type: string): string {
