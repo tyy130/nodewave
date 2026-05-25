@@ -98,7 +98,7 @@
     "build": "webpack --mode production",
     "dev": "webpack --mode development --watch",
     "clean": "rm -rf dist",
-    "package": "vsce package",
+    "package": "vsce package --no-dependencies",
     "vscode:prepublish": "pnpm build"
   },
   "dependencies": {
